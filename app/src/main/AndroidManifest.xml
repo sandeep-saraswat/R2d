@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.R2d">
         <activity
+            android:name=".template.AddTemplateActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateGroup"
             android:exported="true" />
         <activity
@@ -30,7 +33,7 @@
         <activity
             android:name=".wafflecopter.multicontactpicker.MultiContactPickerActivity"
             android:label="@string/picker_title"
-            tools:ignore="Instantiatable"></activity>
+            tools:ignore="Instantiatable" />
         <activity android:name=".AdditemActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".RegisterActivity" />

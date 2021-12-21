@@ -13,3 +13,10 @@ data class  ItemData(
     var quantity:String,
     var date:String
 )
+
+@Entity
+data class TemplateData(
+    @PrimaryKey(autoGenerate = true)
+    var tempId: Long,
+    var template: String
+)

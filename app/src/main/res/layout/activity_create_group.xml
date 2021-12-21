@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    >
+    android:background="#FFFFFF">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:orientation="vertical">
+
+        <include layout="@layout/toolbar"
+            />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/tid_crd_view"
             style="@style/CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-
-            >
+            android:layout_marginTop="@dimen/pad_30"
+            android:layout_marginStart="@dimen/pad_10"
+            android:layout_marginEnd="@dimen/pad_10"
+            android:layout_marginBottom="@dimen/pad_10">
 
             <EditText
-                android:id="@+id/if_et"
+                android:id="@+id/groupName_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_edge"
                 android:cursorVisible="false"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
                 android:ems="10"
                 android:hint="Enter Your Group NAme"
                 android:imeOptions="actionDone"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
                 android:inputType="number"
                 android:maxLength="8"
                 android:paddingStart="@dimen/pad_16"
@@ -41,8 +42,7 @@
                 android:paddingBottom="@dimen/pad_10"
 
                 android:textColor="@color/black"
-                android:textColorHint="@color/hint_color"
-                />
+                android:textColorHint="@color/hint_color" />
 
         </androidx.cardview.widget.CardView>
 
@@ -61,10 +61,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_edge"
                 android:cursorVisible="false"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
                 android:ems="10"
                 android:hint="Select Contacts"
                 android:imeOptions="actionDone"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
                 android:inputType="number"
                 android:maxLength="8"
                 android:paddingStart="@dimen/pad_16"
@@ -73,10 +73,10 @@
                 android:paddingBottom="@dimen/pad_10"
 
                 android:textColor="@color/black"
-                android:textColorHint="@color/hint_color"
-                />
+                android:textColorHint="@color/hint_color" />
 
         </androidx.cardview.widget.CardView>
+
         <Button
             android:id="@+id/if_proceed_btn"
             android:layout_width="200dp"
@@ -84,11 +84,11 @@
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/pad_8"
             android:layout_marginTop="@dimen/pad_40"
+            android:background="@drawable/edge_button_inactive"
             android:padding="@dimen/pad_2"
             android:text="Done"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small"
-            android:background="@drawable/edge_button_inactive" />
+            android:textSize="@dimen/text_size_small" />
 
 
     </LinearLayout>

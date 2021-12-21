@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 
 
 @Database(
-    entities = [ItemData::class],
+    entities = [ItemData::class, TemplateData::class],
     version = 1
 )
 

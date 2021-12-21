@@ -2,6 +2,7 @@ package com.example.r2d
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.r2d.autosmssender.MainActivity
-
+import com.example.r2d.template.AddTemplateActivity
 
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
@@ -24,6 +25,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     private var viewInventory: CardView? = null
     private var WhatsappMessaging: CardView? = null
     private var MobMessaging: CardView? = null
+    private var createGroup: CardView? = null
+    private var createTemplete: CardView? = null
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -47,12 +50,16 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         viewInventory = findViewById(R.id.viewInventory) as CardView?
         WhatsappMessaging=findViewById(R.id.whatsApp) as CardView?
         MobMessaging=findViewById(R.id.message) as CardView?
+        createGroup=findViewById(R.id.createGroup) as CardView?
+        createTemplete=findViewById(R.id.createTemplete) as CardView?
         addItems?.setOnClickListener(this)
         deleteItems?.setOnClickListener(this)
         scanItems?.setOnClickListener(this)
         viewInventory?.setOnClickListener(this)
         WhatsappMessaging?.setOnClickListener(this)
         MobMessaging?.setOnClickListener(this)
+        createGroup?.setOnClickListener(this)
+        createTemplete?.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -80,6 +87,19 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.message -> {
                 i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+            }
+            R.id.createGroup -> {
+
+                Log.e("create group","click")
+                i = Intent(this, CreateGroup::class.java)
+                startActivity(i)
+
+            }
+            R.id.createTemplete -> {
+               // implemente later
+                Log.e("create templete","click")
+                i = Intent(this, AddTemplateActivity::class.java)
                 startActivity(i)
             }
             else -> {

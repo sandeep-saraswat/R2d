@@ -1,5 +1,6 @@
 package com.example.r2d.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -18,4 +19,16 @@ interface AppDao {
 
     @Update
     fun updateTodo(vararg todos: ItemData)
+
+    // region ====== Template Table dao
+    @Query("SELECT * FROM TemplateData")
+    fun getAllTemplate(): List<TemplateData>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTemplate(template: TemplateData):Long
+
+    @Delete
+    fun deleteTemplate(template: TemplateData)
+
+    // end region
 }
