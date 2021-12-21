@@ -21,4 +21,6 @@
     <color name="blue_normal">#0087FF</color>
 
     <color name="hint_color">#4D4F51</color>
+    <color name="green">#00E676</color>
+
 </resources>
