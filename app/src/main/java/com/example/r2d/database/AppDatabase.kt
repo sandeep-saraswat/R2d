@@ -8,10 +8,10 @@ import androidx.room.TypeConverters
 
 
 @Database(
-    entities = [ItemData::class, TemplateData::class],
+    entities = [ItemData::class, TemplateData::class, ContactGroupData::class],
     version = 1
 )
-
+@TypeConverters(Convertors::class)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun appDao(): AppDao
 

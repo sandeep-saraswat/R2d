@@ -17,7 +17,7 @@
             android:name=".template.AddTemplateActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateGroup"
+            android:name=".group.CreateGroup"
             android:exported="true" />
         <activity
             android:name=".SplashsActivity"

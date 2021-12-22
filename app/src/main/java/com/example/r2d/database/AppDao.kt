@@ -31,4 +31,17 @@ interface AppDao {
     fun deleteTemplate(template: TemplateData)
 
     // end region
+
+
+    // region ====== Template Table dao
+    @Query("SELECT * FROM ContactGroupData")
+    fun getAllContactGroup(): List<ContactGroupData>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertContactGroup(contactGroupData: ContactGroupData):Long
+
+    @Delete
+    fun deleteContactGroup(contactGroupData: ContactGroupData)
+
+    // end region
 }
