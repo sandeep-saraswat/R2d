@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pad_50"
@@ -35,7 +35,9 @@
             android:textSize="@dimen/pad_20" />
 
 
-    </RelativeLayout>
+    </RelativeLayout>-->
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewList"
