@@ -35,17 +35,23 @@ import android.text.TextUtils.SimpleStringSplitter
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.r2d.database.AppDatabase
 import com.example.r2d.database.ContactGroupData
+import com.example.r2d.database.TemplateData
+import com.example.r2d.utils.AlertDialogHelper.Companion.dialogShowTemplateList
 import com.karumi.dexter.listener.PermissionRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.StringBuilder
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
+    private var imgViewBack: ImageView? = null
+
     private var edt_message: EditText? = null
     private var txt_number: EditText? = null
     private var txt_count: EditText? = null
@@ -64,10 +70,13 @@ class MainActivity : AppCompatActivity() {
     private var db: AppDatabase? = null
 
     var contactGroupDataList= ArrayList<ContactGroupData>()
+    var templateDataList= ArrayList<TemplateData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_massaging)
+        imgViewBack = findViewById(R.id.imgViewBack)
+
         edt_message = findViewById(R.id.edt_message)
         txt_number = findViewById(R.id.txt_mobile_number)
         txt_count = findViewById(R.id.txt_count)
@@ -157,7 +166,29 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Send Message", Toast.LENGTH_LONG).show()
             Log.e("results", "" + results.size)
         })
-        button_choose_template?.setOnClickListener(View.OnClickListener { })
+
+        button_choose_template?.setOnClickListener(View.OnClickListener {
+
+
+            lifecycleScope.launch(Dispatchers.IO){
+                var temp = db?.appDao()?.getAllTemplate()
+                templateDataList.clear()
+                templateDataList.addAll(temp?:ArrayList())
+
+                withContext(Dispatchers.Main){
+
+                    dialogShowTemplateList(
+                        this@MainActivity,
+                        "Select Template",
+                        templateDataList
+                    ){
+                        edt_message?.setText(it.template)
+                    }
+
+                }
+            }
+
+        })
 
         button_choose_group?.setOnClickListener(View.OnClickListener {
 
@@ -165,17 +196,27 @@ class MainActivity : AppCompatActivity() {
                 var temp = db?.appDao()?.getAllContactGroup()
                 contactGroupDataList.clear()
                 contactGroupDataList.addAll(temp?:ArrayList())
+
+                withContext(Dispatchers.Main){
+
+                    dialogShowList(
+                        this@MainActivity,
+                        "Select Group",
+                        contactGroupDataList
+                    ){
+                        var groupContact = ArrayList<ContactResult>()
+                        groupContact.addAll(it.groupContact?:ArrayList())
+                        selectedContactAdapter?.addList(groupContact)
+                    }
+
+                }
             }
-            dialogShowList(
-                this@MainActivity,
-                "Select Group",
-                contactGroupDataList
-            ){
-                var groupContact = ArrayList<ContactResult>()
-                groupContact.addAll(it.groupContact?:ArrayList())
-                selectedContactAdapter?.addList(groupContact)
-            }
+
         })
+
+        imgViewBack?.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
