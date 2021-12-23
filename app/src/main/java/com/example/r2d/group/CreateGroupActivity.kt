@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 
-class CreateGroup : AppCompatActivity(), View.OnClickListener {
+class CreateGroupActivity : AppCompatActivity(), View.OnClickListener {
 
     private val CONTACT_PICKER_REQUEST = 202
     var results: List<ContactResult> = ArrayList()
@@ -56,7 +56,7 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
         txtViewTitle?.text = "Create Group"
 
         db = Room.databaseBuilder(
-            this@CreateGroup,
+            this@CreateGroupActivity,
             AppDatabase::class.java, "todo-list.db"
         ).build()
 
@@ -65,10 +65,10 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
         button_choose_contacts?.setOnClickListener(this)
 
         // temp to check db
-        lifecycleScope.launch(Dispatchers.IO){
-            var tempList = db?.appDao()?.getAllContactGroup()
-            Log.e("templist",""+tempList?.size)
-        }
+//        lifecycleScope.launch(Dispatchers.IO){
+//            var tempList = db?.appDao()?.getAllContactGroup()
+//            Log.e("templist",""+tempList?.size)
+//        }
     }
 
     override fun onClick(v: View?) {
@@ -87,7 +87,7 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
                     // save group
                     lifecycleScope.launch(Dispatchers.IO) {
                         withContext(Dispatchers.Main) {
-                            Progress.start(this@CreateGroup)
+                            Progress.start(this@CreateGroupActivity)
                         }
                         var contactGroupData = ContactGroupData(0, groupName, results)
                         var row = db?.appDao()?.insertContactGroup(contactGroupData)
@@ -99,7 +99,7 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
                             contactAdapter?.updateList(results)
 
                             Toast.makeText(
-                                this@CreateGroup,
+                                this@CreateGroupActivity,
                                 "Group save successfully.",
                                 Toast.LENGTH_LONG
                             ).show()
@@ -114,13 +114,13 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
             }
 
             button_choose_contacts -> {
-                MultiContactPicker.Builder(this@CreateGroup)
+                MultiContactPicker.Builder(this@CreateGroupActivity)
                     .hideScrollbar(false)
                     .showTrack(true)
                     .searchIconColor(Color.WHITE)
                     .setChoiceMode(MultiContactPicker.CHOICE_MODE_MULTIPLE)
-                    .handleColor(ContextCompat.getColor(this@CreateGroup, R.color.colorPrimary))
-                    .bubbleColor(ContextCompat.getColor(this@CreateGroup, R.color.colorPrimary))
+                    .handleColor(ContextCompat.getColor(this@CreateGroupActivity, R.color.colorPrimary))
+                    .bubbleColor(ContextCompat.getColor(this@CreateGroupActivity, R.color.colorPrimary))
                     .bubbleTextColor(Color.WHITE)
                     .setTitleText("Select Contacts")
                     .setLoadingType(MultiContactPicker.LOAD_ASYNC)
@@ -168,8 +168,8 @@ class CreateGroup : AppCompatActivity(), View.OnClickListener {
     var contactAdapter: ContactAdapter? = null
 
     private fun setupRecyclerview() {
-        rvContactList?.layoutManager = GridLayoutManager(this@CreateGroup, 1)
-        contactAdapter = ContactAdapter(this@CreateGroup, results)
+        rvContactList?.layoutManager = GridLayoutManager(this@CreateGroupActivity, 1)
+        contactAdapter = ContactAdapter(this@CreateGroupActivity, results)
         rvContactList?.adapter = contactAdapter
 
     }

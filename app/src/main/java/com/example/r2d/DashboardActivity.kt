@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.r2d.autosmssender.MainActivity
-import com.example.r2d.group.CreateGroup
+import com.example.r2d.group.CreateGroupActivity
 import com.example.r2d.template.AddTemplateActivity
 
 
@@ -93,7 +93,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.createGroup -> {
 
                 Log.e("create group","click")
-                i = Intent(this, CreateGroup::class.java)
+                i = Intent(this, CreateGroupActivity::class.java)
                 startActivity(i)
 
             }
