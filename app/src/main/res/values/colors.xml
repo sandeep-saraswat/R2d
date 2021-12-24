@@ -23,5 +23,6 @@
 
     <color name="hint_color">#4D4F51</color>
     <color name="green">#00E676</color>
+    <color name="toolbar_bg">#0E81D1</color>
 
 </resources>

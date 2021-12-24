@@ -5,16 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <LinearLayout
         android:orientation="vertical"
         android:background="@drawable/bg"
-        android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
         <TextView
             android:id="@+id/firebasename"
@@ -25,23 +20,23 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="28dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/allura"
             android:text="Welcome, Rohit"
             android:textStyle="bold"
             android:textColor="#F57C00"
             android:textSize="40sp" />
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-
-
-
-        <GridLayout
+            <GridLayout
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:layout_weight="8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -83,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="Add Product"
-                        android:textSize="17dp"/>
+                        android:textSize="17sp"/>
 
 
 
@@ -393,6 +388,8 @@
 
             </androidx.cardview.widget.CardView>
         </GridLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
