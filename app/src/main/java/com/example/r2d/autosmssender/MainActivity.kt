@@ -177,12 +177,16 @@ class MainActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
 
-                    dialogShowTemplateList(
-                        this@MainActivity,
-                        "Select Template",
-                        templateDataList
-                    ){
-                        edt_message?.setText(it.template)
+                    if(templateDataList.size == 0){
+                        Toast.makeText(this@MainActivity,"Template not available.",Toast.LENGTH_LONG).show()
+                    }else {
+                        dialogShowTemplateList(
+                            this@MainActivity,
+                            "Select Template",
+                            templateDataList
+                        ) {
+                            edt_message?.setText(it.template)
+                        }
                     }
 
                 }
@@ -199,14 +203,18 @@ class MainActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
 
-                    dialogShowList(
-                        this@MainActivity,
-                        "Select Group",
-                        contactGroupDataList
-                    ){
-                        var groupContact = ArrayList<ContactResult>()
-                        groupContact.addAll(it.groupContact?:ArrayList())
-                        selectedContactAdapter?.addList(groupContact)
+                    if(contactGroupDataList.size == 0){
+                        Toast.makeText(this@MainActivity,"Group not available.",Toast.LENGTH_LONG).show()
+                    }else {
+                        dialogShowList(
+                            this@MainActivity,
+                            "Select Group",
+                            contactGroupDataList
+                        ) {
+                            var groupContact = ArrayList<ContactResult>()
+                            groupContact.addAll(it.groupContact ?: ArrayList())
+                            selectedContactAdapter?.addList(groupContact)
+                        }
                     }
 
                 }

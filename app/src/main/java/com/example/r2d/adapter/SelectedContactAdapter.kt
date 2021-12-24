@@ -1,6 +1,7 @@
 package com.example.r2d.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,8 +62,11 @@ class SelectedContactAdapter(
         }
 
         holder.imgViewCross.setOnClickListener {
+           // Log.e("arrList",""+arrList.size)
+           // Log.e("position",""+position)
             arrList.removeAt(position)
-            notifyItemChanged(position)
+            //notifyItemRemoved(position)
+            notifyDataSetChanged()
         }
     }
 
