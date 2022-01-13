@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94973375201",
+    "project_id": "rtod-fd58c",
+    "storage_bucket": "rtod-fd58c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94973375201:android:5afb7ccf271c567cc0fda0",
+        "android_client_info": {
+          "package_name": "com.example.r2d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94973375201-n6osjm8g6uvi9p9qeb4e9cotb3tpj54j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmb3tKIeV5WGQuc4p9KYjKb0zlLDheT5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94973375201-n6osjm8g6uvi9p9qeb4e9cotb3tpj54j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
