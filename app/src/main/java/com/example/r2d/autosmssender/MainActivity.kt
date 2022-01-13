@@ -24,10 +24,14 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.widget.Toast
 import com.example.r2d.utils.AlertDialogHelper
 import android.app.Activity
+import android.content.*
 import androidx.recyclerview.widget.GridLayoutManager
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.database.Cursor
 import android.graphics.Color
+import android.net.Uri
+import android.os.Environment
 import android.provider.Settings
 import com.example.r2d.autosmssender.WhatAppAccessibilityService
 import android.provider.Settings.SettingNotFoundException
@@ -46,8 +50,15 @@ import com.karumi.dexter.listener.PermissionRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.lang.StringBuilder
 import java.util.ArrayList
+import android.provider.MediaStore
+
+
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private var imgViewBack: ImageView? = null
@@ -59,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     private var btn_sms: Button? = null
     private var btn_whatsapp: Button? = null
     private var btn_choose: Button? = null
+    private var btn_attachment: Button? = null
     private var button_choose_group: Button? = null
     private var button_choose_template: Button? = null
     private var btn_send: Button? = null
@@ -66,8 +78,10 @@ class MainActivity : AppCompatActivity() {
     var results = ArrayList<ContactResult>()
     var selectedContactAdapter: SelectedContactAdapter? = null
     private var btn_whatsapp_each_word: Button? = null
+    private var file_path: String? = null
 
     private var db: AppDatabase? = null
+    private  var from:String?=null
 
     var contactGroupDataList= ArrayList<ContactGroupData>()
     var templateDataList= ArrayList<TemplateData>()
@@ -84,12 +98,13 @@ class MainActivity : AppCompatActivity() {
         btn_sms = findViewById(R.id.btn_sms)
         btn_whatsapp = findViewById(R.id.btn_whatsapp)
         btn_whatsapp_each_word = findViewById(R.id.btn_whatsapp2)
+        btn_attachment = findViewById(R.id.btn_attachment)
         btn_choose = findViewById(R.id.button_choose_contacts)
         button_choose_group = findViewById(R.id.button_choose_group)
         button_choose_template = findViewById(R.id.button_choose_template)
         btn_send = findViewById(R.id.btn_send)
         rv_contact_list = findViewById(R.id.rv_contact_list)
-
+        from = intent.getStringExtra("from")
         db = Room.databaseBuilder(
             this@MainActivity,
             AppDatabase::class.java, "todo-list.db"
@@ -151,20 +166,36 @@ class MainActivity : AppCompatActivity() {
         btn_whatsapp?.setOnClickListener(View.OnClickListener {
             MySMSservice.startActionWHATSAPP(
                 applicationContext, edt_message?.getText().toString(),
-                txt_count?.getText().toString(), results, false
+                txt_count?.getText().toString(), results, false,file_path
             )
         })
         btn_whatsapp_each_word?.setOnClickListener(View.OnClickListener {
             MySMSservice.startActionWHATSAPP(
                 applicationContext, edt_message?.getText().toString(),
-                txt_count?.getText().toString(), results, true
+                txt_count?.getText().toString(), results, true,file_path
             )
+        })
+        btn_attachment?.setOnClickListener(View.OnClickListener { v ->
+
+            intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "*/*"
+            startActivityForResult(intent, 7)
         })
         val intent = IntentFilter("my.own.broadcast")
         LocalBroadcastManager.getInstance(this).registerReceiver(myLocalBroadcastReceiver, intent)
         btn_send?.setOnClickListener(View.OnClickListener {
-            Toast.makeText(applicationContext, "Send Message", Toast.LENGTH_LONG).show()
             Log.e("results", "" + results.size)
+            if(from.equals("sms")){
+                val sendSms = Intent(Intent.ACTION_SEND)
+                sendSms.type = "text/plain"
+                sendSms.putExtra(Intent.EXTRA_TEXT, edt_message?.getText().toString())
+                startActivity(sendSms)
+            }else {
+                MySMSservice.startActionWHATSAPP(
+                    applicationContext, edt_message?.getText().toString(),
+                    "1", results, false,file_path
+                )
+            }
         })
 
         button_choose_template?.setOnClickListener(View.OnClickListener {
@@ -245,8 +276,21 @@ class MainActivity : AppCompatActivity() {
                 println("User closed the picker without selecting items.")
             }
         }
-    }
+        when (requestCode) {
+            7 -> if (resultCode == RESULT_OK) {
+               val  currImageURI = data?.data;
+                file_path = data?.data?.path
 
+            }
+        }
+    }
+    fun getRealPathFromURI(uri: Uri?): String? {
+        val cursor: Cursor? = uri?.let { contentResolver.query(it, null, null, null, null) }
+        cursor?.moveToFirst()
+        val idx: Int? = cursor?.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+
+        return idx?.let { cursor?.getString(it) }
+    }
     private fun setupRecyclerview() {
         rv_contact_list!!.layoutManager = GridLayoutManager(this, 1)
         selectedContactAdapter = SelectedContactAdapter(this, results)
@@ -293,4 +337,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val CONTACT_PICKER_REQUEST = 202
     }
+
+
+
 }
