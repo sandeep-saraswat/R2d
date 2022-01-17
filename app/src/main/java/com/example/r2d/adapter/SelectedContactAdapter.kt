@@ -94,4 +94,10 @@ class SelectedContactAdapter(
         notifyDataSetChanged()
     }
 
+    fun addContact(contactResult: ContactResult)
+    {
+        arrList.add(contactResult)
+        notifyDataSetChanged()
+    }
+
 }

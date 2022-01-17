@@ -85,12 +85,12 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.whatsApp -> {
                 Log.e("whatsapp","click")
                 i = Intent(this, MainActivity::class.java)
-                intent.putExtra("from", "whatsapp");
+                i.putExtra("from", "whatsapp");
                 startActivity(i)
             }
             R.id.message -> {
                 i = Intent(this, MainActivity::class.java)
-                intent.putExtra("from", "sms");
+                i.putExtra("from", "sms");
                 startActivity(i)
             }
             R.id.createGroup -> {

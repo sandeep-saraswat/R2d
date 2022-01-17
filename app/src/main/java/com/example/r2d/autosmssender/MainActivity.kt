@@ -1,64 +1,49 @@
 package com.example.r2d.autosmssender
 
 import android.Manifest
-import com.example.r2d.utils.AlertDialogHelper.Companion.dialogShowList
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.EditText
-import androidx.recyclerview.widget.RecyclerView
-import com.example.r2d.wafflecopter.multicontactpicker.ContactResult
-import com.example.r2d.adapter.SelectedContactAdapter
-import android.os.Bundle
-import com.example.r2d.R
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import android.content.Intent
-import com.example.r2d.wafflecopter.multicontactpicker.MultiContactPicker
-import androidx.core.content.ContextCompat
-import com.example.r2d.wafflecopter.multicontactpicker.LimitColumn
-import com.example.r2d.autosmssender.MainActivity
-import com.example.r2d.autosmssender.MySMSservice
-import android.content.IntentFilter
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import android.widget.Toast
-import com.example.r2d.utils.AlertDialogHelper
-import android.app.Activity
 import android.content.*
-import androidx.recyclerview.widget.GridLayoutManager
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
-import android.os.Environment
+import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.Settings
-import com.example.r2d.autosmssender.WhatAppAccessibilityService
 import android.provider.Settings.SettingNotFoundException
 import android.text.TextUtils.SimpleStringSplitter
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.example.r2d.R
+import com.example.r2d.adapter.SelectedContactAdapter
 import com.example.r2d.database.AppDatabase
 import com.example.r2d.database.ContactGroupData
 import com.example.r2d.database.TemplateData
+import com.example.r2d.utils.AlertDialogHelper.Companion.dialogShowList
 import com.example.r2d.utils.AlertDialogHelper.Companion.dialogShowTemplateList
+import com.example.r2d.wafflecopter.multicontactpicker.ContactResult
+import com.example.r2d.wafflecopter.multicontactpicker.LimitColumn
+import com.example.r2d.wafflecopter.multicontactpicker.MultiContactPicker
+import com.example.r2d.wafflecopter.multicontactpicker.RxContacts.Contact
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.File
-import java.lang.StringBuilder
-import java.util.ArrayList
-import android.provider.MediaStore
-
-
-
-
-
+import java.util.*
+import com.example.r2d.wafflecopter.multicontactpicker.RxContacts.PhoneNumber
 
 class MainActivity : AppCompatActivity() {
     private var imgViewBack: ImageView? = null
@@ -75,6 +60,10 @@ class MainActivity : AppCompatActivity() {
     private var button_choose_template: Button? = null
     private var btn_send: Button? = null
     private var rv_contact_list: RecyclerView? = null
+
+    private var edt_no: EditText? = null
+    private var btn_add_mobile_number: Button? = null
+
     var results = ArrayList<ContactResult>()
     var selectedContactAdapter: SelectedContactAdapter? = null
     private var btn_whatsapp_each_word: Button? = null
@@ -104,7 +93,19 @@ class MainActivity : AppCompatActivity() {
         button_choose_template = findViewById(R.id.button_choose_template)
         btn_send = findViewById(R.id.btn_send)
         rv_contact_list = findViewById(R.id.rv_contact_list)
-        from = intent.getStringExtra("from")
+
+        edt_no = findViewById(R.id.edt_no)
+        btn_add_mobile_number = findViewById(R.id.btn_add_mobile_number)
+
+        from = intent?.getStringExtra("from")
+
+        if(from != null && from.equals("sms"))
+        {
+            btn_attachment?.visibility = View.GONE
+        }else{
+            btn_attachment?.visibility = View.VISIBLE
+        }
+
         db = Room.databaseBuilder(
             this@MainActivity,
             AppDatabase::class.java, "todo-list.db"
@@ -186,10 +187,16 @@ class MainActivity : AppCompatActivity() {
         btn_send?.setOnClickListener(View.OnClickListener {
             Log.e("results", "" + results.size)
             if(from.equals("sms")){
-                val sendSms = Intent(Intent.ACTION_SEND)
-                sendSms.type = "text/plain"
-                sendSms.putExtra(Intent.EXTRA_TEXT, edt_message?.getText().toString())
-                startActivity(sendSms)
+//                val sendSms = Intent(Intent.ACTION_SEND)
+//                sendSms.type = "text/plain"
+//                sendSms.putExtra(Intent.EXTRA_TEXT, edt_message?.getText().toString())
+//                startActivity(sendSms)
+
+                MySMSservice.startActionSMS(
+                    applicationContext, edt_message?.getText().toString(),
+                    "1", results
+                )
+
             }else {
                 MySMSservice.startActionWHATSAPP(
                     applicationContext, edt_message?.getText().toString(),
@@ -255,6 +262,10 @@ class MainActivity : AppCompatActivity() {
 
         imgViewBack?.setOnClickListener {
             finish()
+        }
+
+        btn_add_mobile_number?.setOnClickListener {
+            addContact()
         }
     }
 
@@ -338,6 +349,30 @@ class MainActivity : AppCompatActivity() {
         private const val CONTACT_PICKER_REQUEST = 202
     }
 
+    fun addContact()
+    {
+        var num = edt_no?.text.toString().trim()
+        if(num.isEmpty())
+        {
+            Toast.makeText(this,"Please Enter Number.",Toast.LENGTH_LONG).show()
+            return
+        }
+
+        if(num.length < 10)
+        {
+            Toast.makeText(this,"Please Enter Valid Number.",Toast.LENGTH_LONG).show()
+            return
+        }
+        var id = System.currentTimeMillis()
+        var contact = Contact(id)
+        var ph = PhoneNumber("",num)
+        var phList = mutableListOf<PhoneNumber>()
+        phList.add(ph)
+        contact.phoneNumbers = phList
+        var contactResult = ContactResult(contact)
+
+        selectedContactAdapter?.addContact(contactResult)
+    }
 
 
 }
