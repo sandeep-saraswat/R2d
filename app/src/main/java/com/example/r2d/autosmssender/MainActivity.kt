@@ -34,6 +34,8 @@ import com.example.r2d.wafflecopter.multicontactpicker.ContactResult
 import com.example.r2d.wafflecopter.multicontactpicker.LimitColumn
 import com.example.r2d.wafflecopter.multicontactpicker.MultiContactPicker
 import com.example.r2d.wafflecopter.multicontactpicker.RxContacts.Contact
+import com.example.r2d.wafflecopter.multicontactpicker.RxContacts.PhoneNumber
+
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -43,7 +45,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
-import com.example.r2d.wafflecopter.multicontactpicker.RxContacts.PhoneNumber
+
 
 class MainActivity : AppCompatActivity() {
     private var imgViewBack: ImageView? = null
@@ -364,8 +366,8 @@ class MainActivity : AppCompatActivity() {
             return
         }
         var id = System.currentTimeMillis()
-        var contact = Contact(id)
-        var ph = PhoneNumber("",num)
+        var contact = Contact(id,num)
+        var ph = PhoneNumber(num,num)
         var phList = mutableListOf<PhoneNumber>()
         phList.add(ph)
         contact.phoneNumbers = phList

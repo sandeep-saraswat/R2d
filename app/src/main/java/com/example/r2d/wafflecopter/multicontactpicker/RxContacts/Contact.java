@@ -21,8 +21,13 @@ public class Contact implements Comparable<Contact> {
     private boolean isSelected;
     private int backgroundColor = Color.BLUE;
 
-    Contact(long id) {
+   public Contact(long id) {
         this.mId = id;
+        this.backgroundColor = ColorUtils.getRandomMaterialColor();
+    }
+    public Contact(long id, String name) {
+        this.mId = id;
+        this.mDisplayName=name;
         this.backgroundColor = ColorUtils.getRandomMaterialColor();
     }
 
