@@ -45,6 +45,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -360,7 +361,39 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if(num.length < 10)
+        var numList = num.split(" ")
+
+        print(numList.toString())
+
+        var arrListContactResult = ArrayList<ContactResult>()
+
+        for(item in numList){
+
+            if(item.isEmpty())
+            {
+                // case when enter multiple space in between
+                continue
+            }
+
+            if(item.length != 10)
+            {
+                Toast.makeText(this,"Please Enter Valid Number.",Toast.LENGTH_LONG).show()
+                continue
+            }
+
+            var id = System.currentTimeMillis()
+            var contact = Contact(id,item)
+            var ph = PhoneNumber(item,item)
+            var phList = mutableListOf<PhoneNumber>()
+            phList.add(ph)
+            contact.phoneNumbers = phList
+            var contactResult = ContactResult(contact)
+
+            arrListContactResult.add(contactResult)
+            //selectedContactAdapter?.addContact(contactResult)
+        }
+        selectedContactAdapter?.addList(arrListContactResult)
+        /*if(num.length < 10)
         {
             Toast.makeText(this,"Please Enter Valid Number.",Toast.LENGTH_LONG).show()
             return
@@ -373,7 +406,7 @@ class MainActivity : AppCompatActivity() {
         contact.phoneNumbers = phList
         var contactResult = ContactResult(contact)
 
-        selectedContactAdapter?.addContact(contactResult)
+        selectedContactAdapter?.addContact(contactResult)*/
     }
 
 
