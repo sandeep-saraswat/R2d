@@ -8,6 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.r2d.R
@@ -136,5 +137,21 @@ class AlertDialogHelper {
             dialog.show()
         }
 
+        @JvmStatic
+        fun alertInternetError(context: Context, cb: () -> Unit) {
+            val alertDialog = AlertDialog.Builder(context)
+
+            // Setting Dialog Message
+            alertDialog.setMessage("No internet connection!")
+            alertDialog.setCancelable(true)
+            // Setting Positive "Yes" Button
+            alertDialog.setPositiveButton("Try again") { dialog, which ->
+                cb()
+                dialog.dismiss()
+            }
+
+            // Showing Alert Message
+            alertDialog.show()
+        }
     }
 }

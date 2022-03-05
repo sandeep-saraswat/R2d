@@ -13,10 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.example.r2d.database.AppDatabase
 import com.example.r2d.database.ItemData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 
 class AdditemActivity : AppCompatActivity() {
@@ -67,10 +64,13 @@ class AdditemActivity : AppCompatActivity() {
         ) {
 
             val itemsData = ItemData("1",itemnameValue, itemcategoryValue, itempriceValue, itemquantity,"")
-            GlobalScope.launch {
+            GlobalScope.launch(Dispatchers.IO) {
                 db?.appDao()?.insertAll(itemsData)
                 val  data = db?.appDao()?.getAllData()
+
+                withContext(Dispatchers.Main){
                 Toast.makeText(this@AdditemActivity, "$itemnameValue Added", Toast.LENGTH_SHORT).show()
+                }
                 data?.forEach {
                     println(it)
                 }

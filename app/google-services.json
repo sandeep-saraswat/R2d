@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "94973375201",
-    "project_id": "rtod-fd58c",
-    "storage_bucket": "rtod-fd58c.appspot.com"
+    "project_number": "385413443479",
+    "project_id": "r2dclub",
+    "storage_bucket": "r2dclub.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:94973375201:android:5afb7ccf271c567cc0fda0",
+        "mobilesdk_app_id": "1:385413443479:android:92318ea3523da6cd589ed2",
         "android_client_info": {
-          "package_name": "com.example.r2d"
+          "package_name": "com.R2D.r2d"
         }
       },
       "oauth_client": [
         {
-          "client_id": "94973375201-n6osjm8g6uvi9p9qeb4e9cotb3tpj54j.apps.googleusercontent.com",
+          "client_id": "385413443479-7rdgeln8pqt6ma0b7dgsc3ciaonh46ub.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCmb3tKIeV5WGQuc4p9KYjKb0zlLDheT5A"
+          "current_key": "AIzaSyAZy3kSyOMIe9Psg59yg3E5-leiNvVpwW4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "94973375201-n6osjm8g6uvi9p9qeb4e9cotb3tpj54j.apps.googleusercontent.com",
+              "client_id": "385413443479-7rdgeln8pqt6ma0b7dgsc3ciaonh46ub.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
