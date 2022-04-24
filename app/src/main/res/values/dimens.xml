@@ -70,4 +70,22 @@
     <dimen name="design_btn_padding_bottom">12dp</dimen>
     <dimen name="design_default_inset">12dp</dimen>
 
+    <dimen name="edt_txt_box_height">45dp</dimen>
+    <dimen name="edt_txt_text_size">16sp</dimen>
+
+    <dimen name="width_coustomer_name">200dp</dimen>
+    <dimen name="width_phone">100dp</dimen>
+    <dimen name="width_city">100dp</dimen>
+    <dimen name="width_email">200dp</dimen>
+    <dimen name="width_zip">100dp</dimen>
+
+    <dimen name="width_action">130dp</dimen>
+
+    <dimen name="width_pro_sl">50dp</dimen>
+    <dimen name="width_pro_image">100dp</dimen>
+    <dimen name="width_pro_name">200dp</dimen>
+    <dimen name="width_pro_unit">100dp</dimen>
+    <dimen name="width_pro_stock">100dp</dimen>
+    <dimen name="width_pro_price">100dp</dimen>
+
 </resources>

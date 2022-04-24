@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/toolbar_bg">
+    android:background="@color/background">
 
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/pad_5"
         android:padding="@dimen/pad_5"
-        app:tint="@color/white"/>
+        app:tint="@color/black"/>
 
     <TextView
         android:id="@+id/txtViewTitle"
@@ -26,7 +26,7 @@
         android:ellipsize="end"
         android:text="@string/app_name"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/pad_20" />
 
 

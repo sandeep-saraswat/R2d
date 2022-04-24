@@ -1,5 +1,6 @@
 package com.example.r2d.database
 
+import android.media.Image
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -44,4 +45,37 @@ interface AppDao {
     fun deleteContactGroup(contactGroupData: ContactGroupData)
 
     // end region
+
+    // region ====== ProductTable Table dao
+    @Query("SELECT * FROM ProductTable")
+    fun getAllProduct(): MutableList<ProductTable>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertProduct(productTable: ProductTable):Long
+
+    @Delete
+    fun deleteProduct(productTable: ProductTable)
+
+    // end region
+
+    // region ====== CustomerTable Table dao
+    @Query("SELECT * FROM CustomerTable")
+    fun getAllCustomer(): MutableList<CustomerTable>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCustomerTable(customerTable: CustomerTable):Long
+
+    @Delete
+    fun deleteCustomerTable(customerTable: CustomerTable)
+
+    // end region
+
+   /* @Insert
+    fun insert(vararg images: Test?)
+
+    @Query("SELECT * FROM Test")
+    fun getAllImage(): List<Image?>?
+
+    @Query("SELECT * FROM Test where image_id = :imageId")
+    fun getImageByImageId(imageId: Int): List<Image?>?*/
 }

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customer.CustomerListActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/txtViewAddCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/pad_10"
+        android:layout_marginStart="@dimen/pad_10"
+        android:background="@drawable/border_bg_green"
+        android:elevation="@dimen/pad_5"
+        android:paddingStart="@dimen/pad_15"
+        android:paddingTop="@dimen/pad_10"
+        android:paddingEnd="@dimen/pad_15"
+        android:paddingBottom="@dimen/pad_10"
+        android:drawablePadding="@dimen/pad_10"
+        android:text="Add Customer"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_xsmall"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_add"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewAddCustomer"
+        tools:layout_editor_absoluteX="25dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtViewCustomerName"
+                android:layout_width="@dimen/width_coustomer_name"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="Customer Name"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/txtViewPhone"
+                android:layout_width="@dimen/width_phone"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="Phone"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/txtViewCustomerName"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtViewCity"
+                android:layout_width="@dimen/width_city"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="City"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/txtViewPhone"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtViewEmailAddress"
+                android:layout_width="@dimen/width_email"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="Email Address"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/txtViewCity"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtViewZipCode"
+                android:layout_width="@dimen/width_zip"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="Zip Code"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/txtViewEmailAddress"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtViewAction"
+                android:layout_width="@dimen/width_action"
+                android:layout_height="wrap_content"
+                android:background="@color/header_background"
+                android:padding="15dp"
+                android:text="Action"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/txtViewZipCode"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewCustomerName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtViewCustomerNotFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer Not Available Please Add."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

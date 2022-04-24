@@ -1,207 +1,540 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".product.AdditemActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="217dp"
-        android:layout_height="156dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/allura"
-        android:gravity="center"
 
-        android:text="Product Details"
-        android:textColor="#C1F8B0B0"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="16dp" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-<LinearLayout
-    android:layout_below="@+id/textView"
-    android:id="@+id/ll1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="1"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_weight=".4"
+    <!-- <TextView
+         android:id="@+id/textView"
+         android:layout_width="217dp"
+         android:layout_height="156dp"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="20dp"
+         android:fontFamily="@font/allura"
+         android:gravity="center"
+
+         android:text="Product Details"
+         android:textColor="#C1F8B0B0"
+         android:textSize="50dp"
+         android:textStyle="bold"
+         tools:layout_editor_absoluteX="97dp"
+         tools:layout_editor_absoluteY="16dp"
+         />-->
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="25dp"
-        android:text="Product "
-        android:textColor="#C1F8B0B0"
-        android:textSize="20dp"
-        android:textStyle="bold"
-    />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/pad_15"
+            android:layout_marginEnd="@dimen/pad_15"
+            android:layout_marginBottom="@dimen/pad_15"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edititemname"
-        android:layout_width="0dp"
-        android:layout_weight=".6"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_centerHorizontal="true"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
 
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:textColor="#ffff"
-        android:textColorHint="#ffff"
- />
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Product Name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <!--<EditText
+                    android:id="@+id/edtTextCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Category"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_50"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--Product Code-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Code"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextProductCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Product Code"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />
+
+            </LinearLayout>
+
+            <!--Brand-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brand"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <!--<EditText
+                    android:id="@+id/edtTextBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Brand"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_50"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--Product Unit-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Unit"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <!--<EditText
+                    android:id="@+id/edtTextProductUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Product Unit"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_50"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerProductUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--Product Price-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Price"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtTextProductPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Product Price"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />
+            </LinearLayout>
+
+            <!--Product Tax-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Tax"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+               <!-- <EditText
+                    android:id="@+id/edtTextProductTax"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Product Tax"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pad_50"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerProductTax"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--Discount-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtTextDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Discount"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />
+            </LinearLayout>
+
+            <!--stock-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtTextStock"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_txt_box_height"
+                    android:layout_marginTop="@dimen/pad_5"
+                    android:background="@drawable/border"
+                    android:hint="Stock"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/edt_txt_text_size" />
+            </LinearLayout>
+
+            <!--product image-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Image"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/relLayCamera"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/pad_15"
+                    android:background="@drawable/border">
+
+                    <ImageView
+                        android:id="@+id/imgViewCamera"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_camera" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtViewSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/pad_15"
+                android:background="@drawable/border_bg_green"
+                android:elevation="@dimen/pad_5"
+                android:paddingStart="@dimen/pad_15"
+                android:paddingTop="@dimen/pad_10"
+                android:paddingEnd="@dimen/pad_15"
+                android:paddingBottom="@dimen/pad_10"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small" />
+
+            <!--<Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#FF345C66"
+                android:text="Submit"
+                android:textColor="#FFFF"
+                android:textSize="20dp" />-->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+<!--
     <LinearLayout
-        android:layout_below="@+id/ll1"
         android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:orientation="horizontal">
+        android:layout_below="@+id/ll1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
-            android:layout_weight=".4"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView3"
             android:layout_alignParentStart="true"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="-76dp"
+            android:layout_weight=".4"
             android:text="Category "
             android:textColor="#C1F8B0B0"
             android:textSize="20dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="38dp"
             tools:layout_editor_absoluteY="287dp" />
+
         <EditText
             android:id="@+id/editcategory"
             android:layout_width="0dp"
-            android:layout_weight=".6"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/edititemname"
             android:layout_centerHorizontal="true"
-            android:textColorHint="#ffff"
-            android:textColor="#ffff"
-
+            android:layout_weight=".6"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Category"
+
+            android:inputType="textPersonName"
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
 
             tools:layout_editor_absoluteX="114dp"
             tools:layout_editor_absoluteY="211dp" />
 
 
     </LinearLayout>
-<LinearLayout
-    android:layout_below="@+id/ll2"
-    android:id="@+id/ll3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="1"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/tvprice"
-        android:layout_width="0dp"
-        android:layout_weight=".4"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="-76dp"
-        android:text="price "
-        android:textColor="#C1F8B0B0"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="287dp" />
-    <EditText
-        android:id="@+id/editprice"
-        android:layout_width="0dp"
-        android:layout_weight=".6"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edititemname"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="#ffff"
-        android:textColor="#ffff"
 
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Price"
-
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="211dp" />
-
-
-</LinearLayout>
     <LinearLayout
-        android:layout_below="@+id/ll3"
-        android:id="@+id/ll4"
+        android:id="@+id/ll3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:orientation="horizontal">
+        android:layout_below="@+id/ll2"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
         <TextView
-            android:id="@+id/tvquantity"
+            android:id="@+id/tvprice"
             android:layout_width="0dp"
-            android:layout_weight=".4"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView3"
             android:layout_alignParentStart="true"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="-76dp"
+            android:layout_weight=".4"
+            android:text="price "
+            android:textColor="#C1F8B0B0"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="38dp"
+            tools:layout_editor_absoluteY="287dp" />
+
+        <EditText
+            android:id="@+id/editprice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edititemname"
+            android:layout_centerHorizontal="true"
+            android:layout_weight=".6"
+            android:ems="10"
+            android:hint="Price"
+
+            android:inputType="textPersonName"
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
+
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="211dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll3"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvquantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="-76dp"
+            android:layout_weight=".4"
             android:text="Quantity "
             android:textColor="#C1F8B0B0"
             android:textSize="20dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="38dp"
             tools:layout_editor_absoluteY="287dp" />
+
         <EditText
             android:id="@+id/quantity"
             android:layout_width="0dp"
-            android:layout_weight=".6"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/edititemname"
             android:layout_centerHorizontal="true"
-            android:textColorHint="#ffff"
-            android:textColor="#ffff"
-
+            android:layout_weight=".6"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Category"
+
+            android:inputType="textPersonName"
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
 
             tools:layout_editor_absoluteX="114dp"
             tools:layout_editor_absoluteY="211dp" />
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
-
-
-
-
-    <Button
-        android:id="@+id/additembuttontodatabase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ll4"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginBottom="-70dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Add Item"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="211dp" />
-
-
-</RelativeLayout>
+</LinearLayout>

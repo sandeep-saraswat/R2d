@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtViewCustomerName"
+        android:layout_width="@dimen/width_coustomer_name"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtViewPhone"
+        android:layout_width="@dimen/width_phone"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewCustomerName"
+        app:layout_constraintStart_toEndOf="@+id/txtViewCustomerName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewCity"
+        android:layout_width="@dimen/width_city"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="City"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewPhone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewEmailAddress"
+        android:layout_width="@dimen/width_email"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Email Address"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewCity"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewZipCode"
+        android:layout_width="@dimen/width_zip"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Zip Code"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewEmailAddress"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="@dimen/pad_40"
+        android:layout_marginTop="@dimen/pad_5"
+        android:layout_marginEnd="@dimen/pad_5"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toEndOf="@+id/txtViewZipCode"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerAction"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:spinnerMode="dialog" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewCustomerName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

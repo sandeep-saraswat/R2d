@@ -29,7 +29,7 @@
                 android:id="@+id/groupName_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/card_edge"
+                android:background="@drawable/border"
                 android:cursorVisible="false"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
                 android:ems="10"

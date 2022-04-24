@@ -5,16 +5,36 @@
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".utils.R2DApplication"
         android:allowBackup="true"
         android:icon="@mipmap/applogo"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/applogo_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.R2d">
+        <activity
+            android:name=".customer.EditCustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customer.CustomerListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customer.AddCustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".product.EditProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".product.ProductListActivity"
+            android:exported="false" />
         <activity
             android:name=".template.AddTemplateActivity"
             android:exported="false" />
@@ -36,7 +56,7 @@
             android:name=".wafflecopter.multicontactpicker.MultiContactPickerActivity"
             android:label="@string/picker_title"
             tools:ignore="Instantiatable" />
-        <activity android:name=".AdditemActivity" />
+        <activity android:name=".product.AdditemActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
@@ -58,6 +78,7 @@
         <service
             android:name=".autosmssender.MySMSservice"
             android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -65,7 +86,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

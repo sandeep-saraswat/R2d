@@ -21,8 +21,17 @@
     <color name="gray">#808080</color>
     <color name="blue_normal">#0087FF</color>
 
-    <color name="hint_color">#4D4F51</color>
+    <color name="hint_color">#757779</color>
     <color name="green">#00E676</color>
     <color name="toolbar_bg">#0E81D1</color>
+
+    <color name="background">#F9E9DA</color>
+    <color name="sub_hading">#8A8176</color>
+    <color name="btn_green">#FF345C66</color>
+    <color name="header_background">#D0A374</color>
+
+    <!--edit text region-->
+    <color name="edt_txt_border_outline">#E3DCD6</color>
+    <!--end region-->
 
 </resources>

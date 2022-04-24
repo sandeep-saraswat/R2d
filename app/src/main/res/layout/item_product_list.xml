@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/txtViewSl"
+        android:layout_width="@dimen/width_pro_sl"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+            android:id="@+id/imgView"
+        android:layout_width="@dimen/width_pro_image"
+        android:layout_height="@dimen/pad_50"
+        android:padding="15dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtViewSl"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewName"
+        android:layout_width="@dimen/width_pro_name"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/imgView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewUnit"
+        android:layout_width="@dimen/width_pro_unit"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Unit"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewStock"
+        android:layout_width="@dimen/width_pro_stock"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Stock"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewUnit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtViewPrice"
+        android:layout_width="@dimen/width_pro_price"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txtViewStock"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/width_action"
+        android:layout_height="@dimen/pad_40"
+        android:layout_marginTop="@dimen/pad_5"
+        android:layout_marginEnd="@dimen/pad_5"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toEndOf="@+id/txtViewPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerAction"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:spinnerMode="dialog" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewSl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/pad_2"
+        android:layout_marginBottom="@dimen/pad_2"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
